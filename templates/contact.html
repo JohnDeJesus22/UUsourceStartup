@@ -1,4 +1,44 @@
 {% extends "layout.html" %}
 {% block content %}
+<h2 style="color: orange;">Contact</h2 >
+    <ul style="list-style-type:circle">
+      <li>Have Questions about the future app?</li>
+      <li>Have a story you want to tell and contribute?</li>
+    </ul>
 
+{% for message in form.name.errors %}
+  <div class="flash">{{ message }}</div>
+{% endfor %}
+
+{% for message in form.email.errors %}
+  <div class="flash">{{ message }}</div>
+{% endfor %}
+
+{% for message in form.subject.errors %}
+  <div class="flash">{{ message }}</div>
+{% endfor %}
+
+{% for message in form.message.errors %}
+  <div class="flash">{{ message }}</div>
+{% endfor %}
+
+  <form action="{{ url_for('contact_page') }}" method=post>
+    {{ form.hidden_tag() }}
+    <fieldset class="form-group">
+        {{ form.name.label(class="form-control-label") }}
+    {{ form.name(class="form-control form-control-sm") }}
+
+    {{ form.email.label(class="form-control-label")}}
+    {{ form.email(class="form-control form-control-sm") }}
+
+    {{ form.subject.label(class="form-control-label") }}
+    {{ form.subject(class="form-control form-control-sm") }}
+
+    {{ form.message.label(class="form-control-label") }}
+    {{ form.message(class="form-control form-control-lg") }}
+    </fieldset>
+
+
+    {{ form.submit(class="btn btn-primary mb1 bg-orange") }}
+  </form>
 {% endblock %}
